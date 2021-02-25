@@ -41,6 +41,7 @@ jobs:
           wget https://raw.githubusercontent.com/KyleSanderson/SteamWorks/master/Pawn/includes/SteamWorks.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/smjansson.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/DaLLuZZ/Surftimer-Official/dev/addons/sourcemod/scripting/include/colorlib.inc -P $INCLUDE_PATH
+          wget https://raw.githubusercontent.com/DaLLuZZ/Surftimer-Official/dev/addons/sourcemod/scripting/include/colorlib_map.inc -P $INCLUDE_PATH
           wget https://github.com/Impact123/AutoExecConfig/raw/development/autoexecconfig.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/peace-maker/DHooks2/dynhooks/sourcemod_files/scripting/include/dhooks.inc -P $INCLUDE_PATH
           
@@ -49,25 +50,6 @@ jobs:
 
           git clone https://github.com/Deathknife/sourcemod-discord.git
           mv sourcemod-discord/include/* $INCLUDE_PATH
-
-      - name: Set up python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.x'
-        
-      - name: Install python dependencies
-        run: python3 -m pip install --upgrade pip setuptools wheel
-        
-      - name: Download colorlib-gen
-        run: git clone https://github.com/c0rp3n/colorlib-gen.git $TOOLS_PATH/gen
-        
-      - name: Install colorlib-gen
-        run: |
-          cd $TOOLS_PATH/gen/
-          pip install -r ./requirements.txt
-          python3 ./setup.py install
-      - name: Generate colorlib_map.inc
-        run: colorlib_gen -re --config "$TOOLS_PATH/colors.yaml" "$INCLUDE_PATH/colorlib_map.inc"
 
       - name: Compile plugin
         run: |
