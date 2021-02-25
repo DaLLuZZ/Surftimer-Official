@@ -52,15 +52,7 @@ jobs:
 
           git clone https://github.com/Deathknife/sourcemod-discord.git
           mv sourcemod-discord/include/* $INCLUDE_PATH
-      
-      - name: Set up python
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.x'
-        
-      - name: Install python dependencies
-        run: python3 -m pip install --upgrade pip setuptools wheel
-        
+          
       - name: Compile plugin
         run: |
           echo -e "\nCompiling SurfTimer.sp..."
