@@ -43,6 +43,7 @@ jobs:
           wget https://raw.githubusercontent.com/KyleSanderson/SteamWorks/master/Pawn/includes/SteamWorks.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/JoinedSenses/SourceMod-IncludeLibrary/master/include/smjansson.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/DaLLuZZ/Surftimer-Official/dev/addons/sourcemod/scripting/include/colorlib.inc -P $INCLUDE_PATH
+          wget https://raw.githubusercontent.com/DaLLuZZ/Surftimer-Official/dev/addons/sourcemod/scripting/include/colorlib_map.inc -P $INCLUDE_PATH
           wget https://github.com/Impact123/AutoExecConfig/raw/development/autoexecconfig.inc -P $INCLUDE_PATH
           wget https://raw.githubusercontent.com/peace-maker/DHooks2/dynhooks/sourcemod_files/scripting/include/dhooks.inc -P $INCLUDE_PATH
           
@@ -60,21 +61,6 @@ jobs:
       - name: Install python dependencies
         run: python3 -m pip install --upgrade pip setuptools wheel
         
-      - name: Download colorlib-gen
-        run: |
-          cd tools
-          git clone https://github.com/c0rp3n/colorlib-gen.git
-        
-      - name: Install colorlib-gen
-        run: |
-          cd tools/colorlib-gen
-          pip install -r ./requirements.txt
-          python3 ./setup.py install
-
-      - name: Generate colorlib_map.inc
-        run: colorlib_gen -r --config "./colors.yaml" "../addons/sourcemod/scripting/include/colorlib_map.inc"
-        working-directory: ./tools
-
       - name: Compile plugin
         run: |
           echo -e "\nCompiling SurfTimer.sp..."
