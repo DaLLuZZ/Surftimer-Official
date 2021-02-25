@@ -995,7 +995,7 @@ public void PlayReplay(int client, int &buttons, int &subtype, int &seed, int &i
 				else
 				{
 					bool found = false;
-					if (g_StageReplaysLoop == 3)
+					if (g_StageReplaysLoop >= 0)
 					{
 						char sPath2[256];
 						for (int i = 1; i <= g_TotalStages; i++)
