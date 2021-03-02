@@ -6119,7 +6119,7 @@ public void sql_selectTotalBonusCountCallback(Database db, DBResultSet results, 
 public void db_selectTotalStageCount()
 {
 	char szQuery[256];
-	Format(szQuery, sizeof(szQuery), "SELECT SUM(c.stages) FROM (SELECT a.mapname, MAX(zonetypeid)+2 as stages FROM `ck_zones` a RIGHT JOIN ck_maptier b ON a.mapname = b.mapname WHERE zonetype = 3 GROUP BY a.mapname)c;");		Format(szQuery, sizeof(szQuery), "SELECT SUM(a.stages) FROM (SELECT COUNT(zonetype)+1 AS stages FROM `ck_zones` WHERE zonetype=3 GROUP BY mapname)a;");
+	Format(szQuery, sizeof(szQuery), "SELECT SUM(a.stages) FROM (SELECT COUNT(zonetype)+1 AS stages FROM `ck_zones` WHERE zonetype=3 GROUP BY mapname)a;");
 	if (g_cLogQueries.BoolValue)
 	{
 		LogToFile(g_szQueryFile, "db_selectTotalStageCount - szQuery: %s", szQuery);
